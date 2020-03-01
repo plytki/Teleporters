@@ -105,7 +105,7 @@ public class Linkpads implements CommandExecutor, Listener{
 		}
 	
 	
-	//**THE FOLLOWING STATEMENT IS THE ONE THAT ISN’T FIRING CORRECTLY**//
+	
 	} else if (LinkingList2.contains(player.getName())) {
 		if (!Teleporter.padList1.containsValue(block.getLocation()) && !Teleporter.padList2.containsValue(block.getLocation())) {
 			

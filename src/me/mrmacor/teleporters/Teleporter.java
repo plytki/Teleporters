@@ -43,18 +43,26 @@ public class Teleporter implements Listener {
         	
           if (padList1.get(key).equals(blockLocation)) {
         	  
+        	  Location oldLoc = padList2.get(key);
+        	  
+        	  if (Bukkit.getWorld(oldLoc.getWorld().getName()) != null) {
           
-            Location oldLoc = padList2.get(key);
-            Location newLoc = new Location(oldLoc.getWorld(), oldLoc.getX() + 0.5, oldLoc.getY(), oldLoc.getZ() + 0.5, player.getLocation().getYaw(), player.getLocation().getPitch());
-            player.teleport(newLoc);
-            
-            // Cooldown stuff
-            cooldownList.add(player.getName());
-            Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), () -> {
-            	cooldownList.remove(player.getName());
-                }, 5L);
-            return;
-            
+	            
+	            Location newLoc = new Location(oldLoc.getWorld(), oldLoc.getX() + 0.5, oldLoc.getY(), oldLoc.getZ() + 0.5, player.getLocation().getYaw(), player.getLocation().getPitch());
+	            player.teleport(newLoc);
+	            
+	            // Cooldown stuff
+	            cooldownList.add(player.getName());
+	            Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), () -> {
+	            	cooldownList.remove(player.getName());
+	                }, 5L);
+	            return;
+	            
+        	  } else {
+        		  player.sendMessage("The receiving teleporter pad is in a world that no longer exists, the pair will now be deleted from the list.");
+        		  padList1.remove(key);
+        		  padList2.remove(key);
+        	  }
             
           } 
         }  
@@ -66,17 +74,26 @@ public class Teleporter implements Listener {
 	        	
 	        
 	          Location oldLoc = padList1.get(key);
-	          Location newLoc = new Location(oldLoc.getWorld(), oldLoc.getX() + 0.5D, oldLoc.getY(), oldLoc.getZ() + 0.5D, player.getLocation().getYaw(), player.getLocation().getPitch());
-	          player.teleport(newLoc);
 	          
-	          // Cooldown stuff
-	          cooldownList.add(player.getName());
-	          Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), () -> {
-				cooldownList.remove(player.getName());
-	              }, 5L);
+	          if (Bukkit.getWorld(oldLoc.getWorld().getName()) != null) {
+	        	  
+	        	  Location newLoc = new Location(oldLoc.getWorld(), oldLoc.getX() + 0.5D, oldLoc.getY(), oldLoc.getZ() + 0.5D, player.getLocation().getYaw(), player.getLocation().getPitch());
+		          player.teleport(newLoc);
+		          
+		          // Cooldown stuff
+		          cooldownList.add(player.getName());
+		          Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), () -> {
+					cooldownList.remove(player.getName());
+		              }, 5L);
+		          
+		          return;
+		       } else {
+		    	   player.sendMessage("The receiving teleporter pad is in a world that no longer exists, the pair will now be deleted from the list.");
+	        	   padList1.remove(key);
+	        	   padList2.remove(key);
+		       }
+	        }
 	          
-	          return;
-	        } 
       } 
     } 
   }
