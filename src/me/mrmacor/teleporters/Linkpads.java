@@ -20,8 +20,8 @@ import org.bukkit.inventory.EquipmentSlot;
 public class Linkpads implements CommandExecutor, Listener{
 
 
-	private static ArrayList<String> LinkingList1 = new ArrayList<String>(30);
-	private static ArrayList<String> LinkingList2 = new ArrayList<String>(30);
+	private static ArrayList<String> LinkingList1 = new ArrayList<String>();
+	private static ArrayList<String> LinkingList2 = new ArrayList<String>();
 	
 	
 	
