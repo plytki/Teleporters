@@ -1,9 +1,0 @@
-main: me.mrmacor.teleporters.Main
-name: Teleporters
-version: 1.0.1
-description: Teleporters is a light-weight plugin that lets players create and link teleporter pads easily.
-api-version: 1.15
-author: MrMacor
-commands:
-  linkpads:
-        description: Command used to link teleport pads
